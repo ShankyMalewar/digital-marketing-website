@@ -1,140 +1,139 @@
 export const navLinks = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "/services" },
+  { label: "Price", href: "/pricing" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const stats = [
-  { value: "120+", label: "Campaigns shipped" },
-  { value: "4.8x", label: "Best ROAS lift" },
-  { value: "98%", label: "Client retention" },
-  { value: "40+", label: "Brands helped" },
+  { value: "120+", label: "Brands switched digital" },
+  { value: "4.8x", label: "Best growth lift" },
+  { value: "98%", label: "Support-first clients" },
+  { value: "40+", label: "Brand stories built" },
 ];
 
 export const clients = [
-  "D2C",
-  "SaaS",
-  "Real Estate",
-  "Clinics",
-  "Coaches",
-  "Creators",
-  "Restaurants",
-  "Local Brands",
+  "Social Media Marketing",
+  "Google Ads",
+  "Graphic Designing",
+  "Brand Strategy",
+  "Content Writing",
+  "Package Designing",
+  "Website Designing",
+  "SEO",
 ];
 
 export const services = [
   {
     number: "01",
-    title: "Performance Marketing",
+    title: "Social Media Marketing",
     description:
-      "Paid campaigns built around clean funnels, sharper creative testing, and numbers your team can actually read.",
-    tags: ["Meta Ads", "Google Ads", "Funnels"],
-    metric: "4.8x ROAS",
-  },
-  {
-    number: "02",
-    title: "Social Strategy",
-    description:
-      "Content systems, campaign calendars, and platform-native ideas that help your brand stay visible without sounding generic.",
-    tags: ["Instagram", "LinkedIn", "Content"],
+      "Platform-ready campaigns that make your brand visible, memorable, and worth engaging with across Instagram, Facebook, LinkedIn, and more.",
+    tags: ["Instagram", "Facebook", "Reels"],
     metric: "+182% actions",
   },
   {
-    number: "03",
-    title: "Brand Identity",
+    number: "02",
+    title: "Google Ads Campaigns",
     description:
-      "Naming, visual direction, landing pages, and messaging that make your marketing feel consistent everywhere.",
-    tags: ["Positioning", "Design", "Copy"],
-    metric: "40+ brands",
+      "Search and paid campaigns built to rank higher, reach high-intent customers, and turn interest into qualified enquiries.",
+    tags: ["Search", "Retargeting", "Leads"],
+    metric: "4.8x lift",
+  },
+  {
+    number: "03",
+    title: "Branding and Graphic Design",
+    description:
+      "Advanced designs, sharp brand stories, and creative assets that help people notice you first and remember you longer.",
+    tags: ["Identity", "Creatives", "Packaging"],
+    metric: "40+ stories",
   },
   {
     number: "04",
-    title: "Web Experiences",
+    title: "Website and SEO Growth",
     description:
-      "Fast landing pages and polished websites designed to convert attention into enquiries, bookings, and sales.",
-    tags: ["Next.js", "Landing Pages", "CRO"],
-    metric: "+38% conversions",
+      "Premium websites, landing pages, and SEO systems that bridge the gap between your business and the customers already looking for you.",
+    tags: ["Websites", "SEO", "Funnels"],
+    metric: "+38% enquiries",
   },
 ];
 
 export const projects = [
   {
-    title: "Performance Creative Sprint",
-    category: "Meta and Google Ads",
+    title: "Switch to Digital Campaign",
+    category: "Social media awareness",
     date: "May 21, 2026",
-    result: "4.8x ROAS clarity",
+    result: "Cross-platform visibility",
     description:
-      "A campaign sprint for stronger lead quality, clearer reporting, and faster creative decisions.",
-    accent: "#1f55a5",
+      "A bold brand push built around the message that it is time to switch to digital marketing and meet customers where they spend attention.",
+    accent: "#2358A7",
     visual: "creative",
-    tags: ["Paid media", "CRO"],
+    tags: ["Social media", "Awareness"],
   },
   {
-    title: "Social Awareness System",
-    category: "Short-form content",
+    title: "Bridge the Gap Service System",
+    category: "Business-to-customer funnel",
     date: "April 18, 2026",
-    result: "+182% profile actions",
+    result: "Customer connection plan",
     description:
-      "Platform-native reels, story prompts, and motion-led content rules for a brand awareness push.",
-    accent: "#ffd917",
-    tags: ["Social", "Motion"],
+      "A service framework that connects your business, your offer, and your customers through content, ads, websites, and follow-up.",
+    accent: "#00AF70",
+    tags: ["Strategy", "Funnels"],
   },
   {
-    title: "Local Lead Engine",
-    category: "Search and retargeting",
+    title: "One Step Growth Solution",
+    category: "SEO and paid discovery",
     date: "March 27, 2026",
-    result: "612 booked enquiries",
+    result: "Higher competitor rank",
     description:
-      "Local search campaigns, proof-led pages, and WhatsApp follow-ups for high-intent service enquiries.",
-    accent: "#2346a1",
-    tags: ["Search", "Local"],
+      "A practical growth direction for brands that need to rank higher, look sharper, and move faster than competitors.",
+    accent: "#1F55A5",
+    tags: ["SEO", "Google Ads"],
   },
   {
-    title: "Conversion Page Refresh",
-    category: "Landing page testing",
+    title: "Branding Skills Offer",
+    category: "Design and brand story",
     date: "February 12, 2026",
-    result: "+38% conversion lift",
+    result: "Premium brand recall",
     description:
-      "Offer hierarchy, campaign analytics, sticky CTAs, and a weekly testing system for paid traffic.",
+      "A visual identity and creative direction built to show what the audience knows, what the brand offers, and why it matters.",
     accent: "#f4f4ef",
-    tags: ["Web", "Analytics"],
+    tags: ["Branding", "Design"],
   },
   {
-    title: "Brand Recall Push",
-    category: "Campaign awareness",
+    title: "Dikhega Tabhi Bikega",
+    category: "Brand visibility campaign",
     date: "January 30, 2026",
-    result: "2.1M impressions",
+    result: "Brand story launch",
     description:
-      "Creator-style edits, visual consistency, and paid distribution designed to keep the brand memorable.",
+      "A visibility-first digital campaign for brands that need better storytelling, stronger creatives, and more reasons for customers to buy.",
     accent: "#101010",
-    tags: ["Brand", "Awareness"],
+    tags: ["Brand story", "Creative"],
   },
 ];
 
 export const reviews = [
   {
-    name: "M. Thompson",
-    role: "Startup CEO",
+    name: "Aarav Mehta",
+    role: "Retail Founder",
     quote:
-      "Their team helped us clean up our campaigns and reporting. Within weeks we understood what was working and where to scale.",
-    metric: "+64% lead quality",
+      "AR Digitals helped us stop posting randomly and start showing up with a clear brand story. Customers finally understood what we offer.",
+    metric: "Stronger brand recall",
     tone: "blue",
   },
   {
-    name: "Sarah Mitchell",
-    role: "SaaS Founder",
+    name: "Neha Kapoor",
+    role: "Service Business Owner",
     quote:
-      "The landing page and ad creative finally felt connected. Our enquiries became more consistent and much easier to track.",
-    metric: "3.2x ROAS",
+      "They bridged the gap between our business and our customers with ads, content, and a landing page that felt connected.",
+    metric: "+38% enquiries",
     tone: "yellow",
   },
   {
-    name: "Daniel Harris",
-    role: "Ecom Owner",
+    name: "Rohan Shah",
+    role: "Local Brand Director",
     quote:
-      "AR Digitals brought structure to our content and paid ads. The work looked sharp, but the best part was the weekly clarity.",
+      "The best part was simple: we relaxed, they built the growth system, and our online presence started looking serious.",
     metric: "+182% actions",
     tone: "paper",
   },
@@ -142,19 +141,19 @@ export const reviews = [
 
 export const processSteps = [
   {
-    title: "Research",
-    text: "We study your offer, audience, competitors, and current funnel before touching creative.",
+    title: "Describe",
+    text: "We understand your business, offer, audience, current visibility, and the gap between you and your customers.",
   },
   {
-    title: "Direction",
-    text: "We shape the campaign angle, channel plan, content system, and success metrics.",
+    title: "Target",
+    text: "We define the platforms, customer intent, brand story, campaign angle, and lead goals before creative begins.",
   },
   {
-    title: "Launch",
-    text: "We ship the first version quickly with clean tracking and focused creative variations.",
+    title: "Create",
+    text: "We design the content, ads, website pages, graphics, and messaging that make the brand visible and desirable.",
   },
   {
-    title: "Improve",
-    text: "We review signal weekly, cut what is weak, and scale what is earning attention.",
+    title: "Grow",
+    text: "We track response, support fast changes, improve the campaign, and help your business grow with clarity.",
   },
 ];

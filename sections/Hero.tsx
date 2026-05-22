@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect } from "react";
 import MagneticButton from "@/components/MagneticButton";
 import { stats } from "@/constants/site";
@@ -25,54 +26,96 @@ export default function Hero() {
         <div className="hero-copy">
           <span className="hero-eyebrow anim-0">
             <span />
-            Digital Marketing Agency
+            Creative Digital Marketing Agency
           </span>
 
-          <h1 className="anim-1">Marketing that looks good and performs.</h1>
+          <h1 className="anim-1">Dikhega tabhi bikega. Be the brand customers choose.</h1>
 
           <p className="anim-2">
-            AR Digitals builds brand systems, campaigns, landing pages, and paid
-            media loops for businesses that want attention to turn into action.
+            AR Digitals bridges the gap between your business and your customers
+            with social media marketing, Google Ads, branding, content, websites,
+            and SEO built to grow your business fast.
           </p>
 
           <div className="hero-actions anim-3">
-            <MagneticButton href="#work">View our work</MagneticButton>
+            <MagneticButton href="#work">See campaigns</MagneticButton>
             <MagneticButton href="#contact" variant="light">
-              Get in touch
+              Get quote
             </MagneticButton>
           </div>
         </div>
 
-        <div id="hero-media" className="hero-media anim-scale">
-          <div className="hero-video-note">
-            <span>Motion slot</span>
-            <p>Drop your AR Digitals reel, 3D loop, or ad animation here.</p>
-          </div>
-          <div className="media-card media-card--main hero-showreel">
+        <div id="hero-media" className="hero-media anim-scale" aria-label="AR Digitals campaign showreel preview">
+          <div className="hero-showreel">
             <div className="showreel-top">
-              <span>AR Digitals showreel</span>
-              <strong>2026</strong>
+              <div className="showreel-brand">
+                <Image src="/ar-logo.png" alt="" width={34} height={34} />
+                <span>AR Digitals Studio</span>
+              </div>
+              <strong>One step growth</strong>
             </div>
-            <div className="showreel-orbit" aria-hidden="true">
-              <span />
-              <span />
-              <span />
+
+            <div className="showreel-stage">
+              <div className="showreel-panel showreel-panel--dashboard">
+                <div className="panel-kicker">Growth dashboard</div>
+                <div className="dashboard-head">
+                  <span>Business lift</span>
+                  <strong>4.8x</strong>
+                </div>
+                <div className="dashboard-chart" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="dashboard-metrics">
+                  <span>ROAS</span>
+                  <span>CAC</span>
+                  <span>Leads</span>
+                </div>
+              </div>
+
+              <div className="showreel-panel showreel-panel--social">
+                <div className="social-preview">
+                  <span>Brand story</span>
+                  <strong>Visible everywhere</strong>
+                </div>
+                <div className="social-caption">
+                  <span>Social media</span>
+                  <strong>+182%</strong>
+                </div>
+              </div>
+
+              <div className="showreel-panel showreel-panel--landing">
+                <div className="landing-nav">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="landing-hero">
+                  <strong>Bridge the gap</strong>
+                  <span>Business to customers</span>
+                </div>
+                <div className="landing-cta">Enquire now</div>
+              </div>
+
+              <div className="showreel-panel showreel-panel--creative">
+                <span>Creative team</span>
+                <strong>Advanced designs</strong>
+                <div className="creative-bars" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+              </div>
             </div>
-            <div className="showreel-window showreel-window--one">
-              <span>Strategy</span>
-              <strong>01</strong>
-            </div>
-            <div className="showreel-window showreel-window--two">
-              <span>Creative</span>
-              <strong>02</strong>
-            </div>
-            <button className="showreel-play" aria-label="Play showreel" type="button">
-              Play
-            </button>
           </div>
+
           <div className="media-card media-card--float reel-stat">
-            <span>Motion slot</span>
-            <strong>MP4</strong>
+            <span>You relax</span>
+            <strong>We grow</strong>
           </div>
         </div>
       </div>

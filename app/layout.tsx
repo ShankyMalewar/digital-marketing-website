@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AR Digitals | Digital Marketing Studio",
+  title: "AR Digitals | Creative Digital Marketing Agency",
   description:
-    "A motion-led digital marketing studio building sharper brands, cleaner funnels, and growth campaigns.",
+    "AR Digitals bridges the gap between your business and your customers with social media marketing, Google Ads, branding, websites, content, and SEO.",
+  icons: {
+    icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png" }],
+    shortcut: "/favicon.ico",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({

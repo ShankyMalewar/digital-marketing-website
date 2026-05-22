@@ -33,9 +33,9 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a href="#contact" className="desktop-cta anim-4">
-          Let&apos;s talk
-        </a>
+        <Link href="/#contact" className="desktop-cta anim-4">
+          Get quote
+        </Link>
 
         <button
           className={`menu-button ${open ? "menu-button--open" : ""}`}
@@ -59,9 +59,9 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <a href="#contact" onClick={() => setOpen(false)} className="mobile-cta">
-              Let&apos;s talk
-            </a>
+            <Link href="/#contact" onClick={() => setOpen(false)} className="mobile-cta">
+              Get quote
+            </Link>
           </li>
         </ul>
       </div>

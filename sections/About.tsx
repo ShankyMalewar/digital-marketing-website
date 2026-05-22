@@ -4,18 +4,18 @@ import { useEffect, useRef } from "react";
 import MagneticButton from "@/components/MagneticButton";
 
 const headlineLines = [
-  "We make growth",
-  "campaigns feel",
-  "less like ads and",
-  "more like brand",
-  "experiences people",
-  "remember.",
+  "You focus on",
+  "your business.",
+  "We build the",
+  "digital system",
+  "that helps it",
+  "grow.",
 ];
 
 const proofCards = [
-  { value: "4.8x", label: "best ROAS lift" },
-  { value: "612", label: "booked enquiries" },
-  { value: "+182%", label: "profile actions" },
+  { value: "01", label: "advanced designs" },
+  { value: "02", label: "creative team" },
+  { value: "03", label: "quick support" },
 ];
 
 export default function About() {
@@ -59,7 +59,7 @@ export default function About() {
   return (
     <section id="about" className="section about-section" ref={sectionRef}>
       <div className="about-bg-ring" />
-      <div className="about-kicker about-reveal">AR Digitals</div>
+      <div className="about-kicker about-reveal">Why choose us?</div>
 
       <div className="about-copy">
         <h2 aria-label={headlineLines.join(" ")}>
@@ -76,18 +76,18 @@ export default function About() {
 
         <div className="about-bottom about-reveal">
           <p>
-            The visual language can be bold and motion-led, but the work stays
-            practical: a clear offer, strong creative, clean landing pages,
-            reliable tracking, and weekly improvement.
+            We combine advanced design, a creative team, affordable direction,
+            quality assurance, and quick support so your brand can look premium,
+            communicate clearly, and keep moving online.
           </p>
           <div className="about-proof">
-            <span>Strategy</span>
-            <span>Creative</span>
-            <span>Paid media</span>
-            <span>Conversion</span>
+            <span>Describe</span>
+            <span>Target</span>
+            <span>Leads</span>
+            <span>Innovation</span>
           </div>
           <MagneticButton href="#contact" variant="light">
-            Start a project
+            Start growing
           </MagneticButton>
         </div>
       </div>

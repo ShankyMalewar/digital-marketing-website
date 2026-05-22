@@ -42,7 +42,7 @@ export default function Reviews() {
     >
       <div className="review-sticky">
         <h2>
-          Client <span>Review</span>
+          Brands that chose <span>growth</span>
         </h2>
 
         <div className="review-slider-window">

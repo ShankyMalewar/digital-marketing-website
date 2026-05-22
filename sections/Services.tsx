@@ -23,6 +23,8 @@ export default function Services() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            const index = Array.from(rows).indexOf(entry.target as HTMLElement);
+            (entry.target as HTMLElement).style.transitionDelay = `${index * 0.08}s`;
             entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
           }
@@ -39,8 +41,8 @@ export default function Services() {
     <section id="services" className="section services-section" ref={sectionRef}>
       <SectionHeader
         eyebrow="What we do"
-        title="Strategy, creative, and media working as one growth system."
-        text="Bold motion gets attention. The system behind it turns that attention into enquiries, bookings, and sales."
+        title="Our services bridge the gap between your business and your customers."
+        text="From social media marketing and Google Ads to content, branding, website design, package design, and SEO, we build the one-step digital system your brand needs to be seen and chosen."
       />
 
       <div className="service-list">

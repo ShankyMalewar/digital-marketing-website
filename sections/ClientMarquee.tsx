@@ -4,7 +4,7 @@ export default function ClientMarquee() {
   const repeated = [...clients, ...clients];
 
   return (
-    <section className="client-strip" aria-label="Brand categories we work with">
+    <section className="client-strip" aria-label="Digital marketing services we offer">
       <div className="marquee-track">
         {repeated.map((client, index) => (
           <span key={`${client}-${index}`} className="client-pill">
@@ -15,4 +15,3 @@ export default function ClientMarquee() {
     </section>
   );
 }
-
