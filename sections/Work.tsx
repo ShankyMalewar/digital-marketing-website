@@ -1,45 +1,97 @@
-import SectionHeader from "@/components/SectionHeader";
+"use client";
+
+import { useEffect } from "react";
 import { projects } from "@/constants/site";
 import type { CSSProperties } from "react";
 
-export default function Work() {
+function ProjectArtwork({ index }: { index: number }) {
   return (
-    <section id="work" className="section work-section">
-      <SectionHeader
-        eyebrow="Selected work"
-        title="Campaign stories with proof, not just pretty layouts."
-        text="Use these placeholders now, then replace them with real case studies as soon as you have client results ready."
-      />
+    <div className={`featured-art featured-art--${index % 5}`}>
+      <div className="featured-art__grain" />
+      <div className="featured-art__panel featured-art__panel--main">
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <strong>
+          {index === 0 ? "ROAS" : index === 1 ? "Reels" : index === 2 ? "Leads" : index === 3 ? "CRO" : "Reach"}
+        </strong>
+      </div>
+      <div className="featured-art__panel featured-art__panel--float">
+        {index === 0 ? "4.8x" : index === 1 ? "+182%" : index === 2 ? "612" : index === 3 ? "+38%" : "2.1M"}
+      </div>
+      <div className="featured-art__orb featured-art__orb--one" />
+      <div className="featured-art__orb featured-art__orb--two" />
+    </div>
+  );
+}
 
-      <div className="work-grid">
-        {projects.map((project, index) => (
-          <article key={project.title} className="work-card work-poster-card">
-            <div
-              className={`work-visual campaign-poster campaign-poster--${project.tone}`}
+export default function Work() {
+  useEffect(() => {
+    const cards = document.querySelectorAll<HTMLElement>(".featured-card");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
+
+  const leftProjects = projects.filter((_, index) => index % 2 === 0);
+  const rightProjects = projects.filter((_, index) => index % 2 === 1);
+
+  return (
+    <section id="work" className="featured-work">
+      <div className="featured-work__inner">
+        <h2>Featured projects</h2>
+
+        <div className="featured-grid">
+          <div className="featured-column featured-column--left">
+            {leftProjects.map((project) => {
+              const index = projects.indexOf(project);
+              return (
+            <article
+              key={project.title}
+              className="featured-card"
               style={{ "--accent": project.accent } as CSSProperties}
             >
-              <div className="poster-logo">AR DigiTals</div>
-              <div className="poster-star poster-star--one" />
-              <div className="poster-star poster-star--two" />
-              <div className="poster-headline">
-                <span>{project.category}</span>
-                <strong>{project.headline}</strong>
+              <div className="featured-card__media">
+                <ProjectArtwork index={index} />
               </div>
-              <div className="poster-object">
-                <span>{index === 0 ? "96" : index === 1 ? "AI" : "ROI"}</span>
-              </div>
-              <div className="poster-bottom">
-                <p>{project.result}</p>
-                <small>Contact now</small>
-              </div>
-            </div>
-            <div className="work-copy">
-              <span>0{index + 1}</span>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-            </div>
-          </article>
-        ))}
+              <h3>
+                <strong>{project.title}</strong> - {project.description}
+              </h3>
+            </article>
+              );
+            })}
+          </div>
+
+          <div className="featured-column featured-column--right">
+            {rightProjects.map((project) => {
+              const index = projects.indexOf(project);
+              return (
+                <article
+                  key={project.title}
+                className="featured-card"
+                style={{ "--accent": project.accent } as CSSProperties}
+              >
+                  <div className="featured-card__media">
+                    <ProjectArtwork index={index} />
+                  </div>
+                  <h3>
+                    <strong>{project.title}</strong> - {project.description}
+                  </h3>
+                </article>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

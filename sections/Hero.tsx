@@ -48,29 +48,31 @@ export default function Hero() {
             <span>Motion slot</span>
             <p>Drop your AR Digitals reel, 3D loop, or ad animation here.</p>
           </div>
-          <div className="media-card media-card--main poster-reel">
-            <div className="poster-brand">AR DigiTals</div>
-            <div className="poster-orbit" aria-hidden="true">
+          <div className="media-card media-card--main hero-showreel">
+            <div className="showreel-top">
+              <span>AR Digitals showreel</span>
+              <strong>2026</strong>
+            </div>
+            <div className="showreel-orbit" aria-hidden="true">
               <span />
               <span />
               <span />
             </div>
-            <div className="poster-copy">
-              <p>Campaign reel</p>
-              <strong>Ads that people pause for.</strong>
+            <div className="showreel-window showreel-window--one">
+              <span>Strategy</span>
+              <strong>01</strong>
             </div>
-            <div className="poster-phone">
-              <div className="phone-notch" />
-              <span>96</span>
-              <small>touchpoints</small>
+            <div className="showreel-window showreel-window--two">
+              <span>Creative</span>
+              <strong>02</strong>
             </div>
-            <div className="poster-chip poster-chip--one">Meta</div>
-            <div className="poster-chip poster-chip--two">Google</div>
-            <div className="poster-chip poster-chip--three">WhatsApp</div>
+            <button className="showreel-play" aria-label="Play showreel" type="button">
+              Play
+            </button>
           </div>
           <div className="media-card media-card--float reel-stat">
-            <span>ROAS lift</span>
-            <strong>4.8x</strong>
+            <span>Motion slot</span>
+            <strong>MP4</strong>
           </div>
         </div>
       </div>
