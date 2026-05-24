@@ -1,23 +1,44 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navLinks } from "@/constants/site";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeHash, setActiveHash] = useState("");
+  const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const contact = document.getElementById("contact");
+      const contactTop = contact?.getBoundingClientRect().top ?? Infinity;
+      setScrolled(window.scrollY > 28);
+      setScrollProgress(scrollable > 0 ? window.scrollY / scrollable : 0);
+      setActiveHash(contactTop < window.innerHeight * 0.5 ? "#contact" : "");
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     onScroll();
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   return (
-    <header className={`site-header ${scrolled || open ? "site-header--solid" : ""}`}>
+    <header
+      className={`site-header ${scrolled || open ? "site-header--solid" : ""} ${
+        scrolled ? "site-header--compact" : ""
+      }`}
+    >
       <nav className="site-nav">
         <Link href="/" className="site-logo anim-0" onClick={() => setOpen(false)}>
           AR Digitals
@@ -26,7 +47,15 @@ export default function Navbar() {
         <ul className="desktop-nav">
           {navLinks.map((link, index) => (
             <li key={link.label} className={`anim-${Math.min(index, 4)}`}>
-              <Link href={link.href} className="nav-link">
+              <Link
+                href={link.href}
+                className={`nav-link ${
+                  link.href === pathname ||
+                  (link.href === "/#contact" && pathname === "/" && activeHash === "#contact")
+                    ? "nav-link--active"
+                    : ""
+                }`}
+              >
                 {link.label}
               </Link>
             </li>
@@ -65,6 +94,11 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
+      <span
+        className="site-header__progress"
+        style={{ transform: `scaleX(${Math.min(Math.max(scrollProgress, 0), 1)})` }}
+        aria-hidden="true"
+      />
     </header>
   );
 }

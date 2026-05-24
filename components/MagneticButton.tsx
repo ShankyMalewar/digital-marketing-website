@@ -25,6 +25,8 @@ export default function MagneticButton({
     const rect = element.getBoundingClientRect();
     const x = event.clientX - rect.left - rect.width / 2;
     const y = event.clientY - rect.top - rect.height / 2;
+    element.style.setProperty("--button-x", `${event.clientX - rect.left}px`);
+    element.style.setProperty("--button-y", `${event.clientY - rect.top}px`);
     element.style.transform = `translate(${x * 0.18}px, ${y * 0.18}px)`;
   };
 
@@ -48,4 +50,3 @@ export default function MagneticButton({
     </a>
   );
 }
-

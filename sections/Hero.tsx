@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import MagneticButton from "@/components/MagneticButton";
-import { stats } from "@/constants/site";
 
 export default function Hero() {
   useEffect(() => {
@@ -29,15 +28,15 @@ export default function Hero() {
             Creative Digital Marketing Agency
           </span>
 
-          <h1 className="anim-1">Dikhega tabhi bikega. Be the brand customers choose.</h1>
+          <h1 className="hero-title anim-1">
+            <span>Make your brand</span>
+            <span>visible, memorable,</span>
+            <span>
+              and <strong>chosen.</strong>
+            </span>
+          </h1>
 
-          <p className="anim-2">
-            AR Digitals bridges the gap between your business and your customers
-            with social media marketing, Google Ads, branding, content, websites,
-            and SEO built to grow your business fast.
-          </p>
-
-          <div className="hero-actions anim-3">
+          <div className="hero-actions hero-actions--premium anim-2">
             <MagneticButton href="#work">See campaigns</MagneticButton>
             <MagneticButton href="#contact" variant="light">
               Get quote
@@ -45,88 +44,16 @@ export default function Hero() {
           </div>
         </div>
 
-        <div id="hero-media" className="hero-media anim-scale" aria-label="AR Digitals campaign showreel preview">
-          <div className="hero-showreel">
-            <div className="showreel-top">
-              <div className="showreel-brand">
-                <Image src="/ar-logo.png" alt="" width={34} height={34} />
-                <span>AR Digitals Studio</span>
-              </div>
-              <strong>One step growth</strong>
-            </div>
-
-            <div className="showreel-stage">
-              <div className="showreel-panel showreel-panel--dashboard">
-                <div className="panel-kicker">Growth dashboard</div>
-                <div className="dashboard-head">
-                  <span>Business lift</span>
-                  <strong>4.8x</strong>
-                </div>
-                <div className="dashboard-chart" aria-hidden="true">
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <div className="dashboard-metrics">
-                  <span>ROAS</span>
-                  <span>CAC</span>
-                  <span>Leads</span>
-                </div>
-              </div>
-
-              <div className="showreel-panel showreel-panel--social">
-                <div className="social-preview">
-                  <span>Brand story</span>
-                  <strong>Visible everywhere</strong>
-                </div>
-                <div className="social-caption">
-                  <span>Social media</span>
-                  <strong>+182%</strong>
-                </div>
-              </div>
-
-              <div className="showreel-panel showreel-panel--landing">
-                <div className="landing-nav">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <div className="landing-hero">
-                  <strong>Bridge the gap</strong>
-                  <span>Business to customers</span>
-                </div>
-                <div className="landing-cta">Enquire now</div>
-              </div>
-
-              <div className="showreel-panel showreel-panel--creative">
-                <span>Creative team</span>
-                <strong>Advanced designs</strong>
-                <div className="creative-bars" aria-hidden="true">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="media-card media-card--float reel-stat">
-            <span>You relax</span>
-            <strong>We grow</strong>
-          </div>
+        <div id="hero-media" className="hero-media hero-media--image anim-scale" aria-label="Online world illustration">
+          <Image
+            src="/online-world-cuate.png"
+            alt="People connecting across the online world"
+            width={1600}
+            height={1200}
+            priority
+            className="hero-storyset-image"
+          />
         </div>
-      </div>
-
-      <div className="hero-stats anim-4">
-        {stats.map(({ value, label }) => (
-          <div key={label}>
-            <strong>{value}</strong>
-            <span>{label}</span>
-          </div>
-        ))}
       </div>
     </section>
   );
