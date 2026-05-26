@@ -454,7 +454,7 @@ textarea {
 .site-nav {
   align-items: center;
   display: flex;
-  height: 64px;
+  height: 68px;
   justify-content: space-between;
   margin: 0 auto;
   max-width: 1440px;
@@ -464,13 +464,13 @@ textarea {
 }
 
 .site-header--compact .site-nav {
-  height: 58px;
+  height: 62px;
 }
 
 .site-logo {
   color: var(--color-blue);
-  font-size: 1rem;
-  font-weight: 800;
+  font-size: 1.06rem;
+  font-weight: 850;
   letter-spacing: 0;
   position: relative;
   transition: color 0.25s ease, transform 0.25s var(--ease-out);
@@ -484,28 +484,33 @@ textarea {
 .desktop-nav {
   align-items: center;
   display: none;
-  gap: 30px;
+  gap: clamp(34px, 3vw, 46px);
   list-style: none;
 }
 
 .nav-link {
-  font-size: 0.88rem;
-  font-weight: 500;
-  letter-spacing: 0;
+  align-items: center;
+  color: rgba(9, 9, 9, 0.86);
+  display: inline-flex;
+  font-size: 0.96rem;
+  font-weight: 650;
+  letter-spacing: 0.004em;
+  line-height: 1;
+  min-height: 34px;
   position: relative;
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, opacity 0.25s ease, transform 0.25s var(--ease-out);
 }
 
 .nav-link::after {
   background: linear-gradient(90deg, var(--color-blue), var(--color-yellow));
-  bottom: -4px;
+  bottom: 2px;
   content: "";
   height: 1px;
   left: 0;
   position: absolute;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.35s var(--ease-out);
+  transition: transform 0.35s var(--ease-out), opacity 0.25s ease;
   width: 100%;
 }
 
@@ -516,6 +521,8 @@ textarea {
 .nav-link:hover,
 .nav-link--active {
   color: var(--color-blue);
+  opacity: 1;
+  transform: translateY(-1px);
 }
 
 .nav-link--active::after {
@@ -549,7 +556,8 @@ textarea {
 
 .desktop-cta {
   display: none;
-  padding: 0 20px;
+  min-height: 44px;
+  padding: 0 24px;
   position: relative;
   overflow: hidden;
 }
@@ -686,15 +694,23 @@ button:focus-visible {
 
 .mobile-drawer ul {
   display: grid;
-  gap: 18px;
+  gap: 20px;
   list-style: none;
-  padding: 24px;
+  padding: 24px clamp(24px, 6vw, 38px) 30px;
 }
 
 .mobile-drawer a:not(.mobile-cta) {
   display: inline-flex;
-  font-size: 1.65rem;
-  font-weight: 800;
+  font-size: clamp(1.45rem, 8vw, 1.85rem);
+  font-weight: 850;
+  letter-spacing: 0.002em;
+  line-height: 1.05;
+  transition: color 0.25s ease, transform 0.25s var(--ease-out);
+}
+
+.mobile-drawer a:not(.mobile-cta):hover {
+  color: var(--color-blue);
+  transform: translateX(4px);
 }
 
 .mobile-cta {
