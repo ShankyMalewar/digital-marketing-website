@@ -28,19 +28,42 @@ export default function Hero() {
             Creative Digital Marketing Agency
           </span>
 
-          <h1 className="hero-title anim-1">
-            <span>Make your brand</span>
-            <span>visible, memorable,</span>
+          <h1 className="hero-title hero-title--tagline anim-1">
+            <span>Dikhega Tabhi</span>
             <span>
-              and <strong>chosen.</strong>
+              <strong>Bikega.</strong>
+            </span>
+            <span className="hero-title__support">
+              Make your brand impossible to ignore.
             </span>
           </h1>
 
-          <div className="hero-actions hero-actions--premium anim-2">
-            <MagneticButton href="#work">See campaigns</MagneticButton>
-            <MagneticButton href="#contact" variant="light">
-              Get quote
-            </MagneticButton>
+          <div className="hero-impact anim-2">
+            <div className="hero-impact__lead">
+              <span>Visibility engine</span>
+              <strong>Seen. Trusted. Chosen.</strong>
+            </div>
+
+            <div className="hero-impact__body">
+              <div className="hero-signal-grid" aria-label="Why choose AR Digitals">
+                <div className="hero-signal-card hero-signal-card--primary">
+                  <span>100+</span>
+                  <strong>Businesses</strong>
+                </div>
+                <div className="hero-signal-card">
+                  <span>Meta</span>
+                  <strong>Ads</strong>
+                </div>
+                <div className="hero-signal-card">
+                  <span>Google</span>
+                  <strong>Leads</strong>
+                </div>
+                <div className="hero-signal-card">
+                  <span>Web</span>
+                  <strong>Sales</strong>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -53,6 +76,13 @@ export default function Hero() {
             priority
             className="hero-storyset-image"
           />
+
+          <div className="hero-media-actions">
+            <MagneticButton href="#contact">Book Free Consultation</MagneticButton>
+            <MagneticButton href="#contact" variant="light">
+              WhatsApp Us
+            </MagneticButton>
+          </div>
         </div>
       </div>
     </section>
