@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navLinks } from "@/constants/site";
@@ -41,7 +42,7 @@ export default function Navbar() {
     >
       <nav className="site-nav">
         <Link href="/" className="site-logo anim-0" onClick={() => setOpen(false)}>
-          AR Digitals
+          <Image src="/ar-logo.png" alt="AR Digitals" width={86} height={86} priority />
         </Link>
 
         <ul className="desktop-nav">

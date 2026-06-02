@@ -29,9 +29,9 @@ export default function Hero() {
           </span>
 
           <h1 className="hero-title hero-title--tagline anim-1">
-            <span>Dikhega Tabhi</span>
+            <span>Dikhega Tabhi Toh,</span>
             <span>
-              <strong>Bikega.</strong>
+              <strong>Bikega</strong>
             </span>
             <span className="hero-title__support">
               Make your brand impossible to ignore.
@@ -40,27 +40,27 @@ export default function Hero() {
 
           <div className="hero-impact anim-2">
             <div className="hero-impact__lead">
-              <span>Visibility engine</span>
-              <strong>Seen. Trusted. Chosen.</strong>
+              <span>We are</span>
+              <strong>Marketing Experts</strong>
             </div>
 
             <div className="hero-impact__body">
               <div className="hero-signal-grid" aria-label="Why choose AR Digitals">
                 <div className="hero-signal-card hero-signal-card--primary">
-                  <span>100+</span>
-                  <strong>Businesses</strong>
+                  <span>100%</span>
+                  <strong>Lead Generation</strong>
                 </div>
                 <div className="hero-signal-card">
-                  <span>Meta</span>
-                  <strong>Ads</strong>
+                  <span>95%</span>
+                  <strong>Appearance</strong>
                 </div>
                 <div className="hero-signal-card">
-                  <span>Google</span>
-                  <strong>Leads</strong>
+                  <span>90%</span>
+                  <strong>Sales Hike</strong>
                 </div>
                 <div className="hero-signal-card">
-                  <span>Web</span>
-                  <strong>Sales</strong>
+                  <span>80%</span>
+                  <strong>Brand Recall</strong>
                 </div>
               </div>
             </div>
