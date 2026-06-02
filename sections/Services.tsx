@@ -1,92 +1,87 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import SectionHeader from "@/components/SectionHeader";
+import { useEffect, useRef } from "react";
 import { services } from "@/constants/site";
+import type { CSSProperties } from "react";
+import styles from "./Services.module.css";
+
+const cardStyles = [
+  { paper: "#fffaf2", band: "#ffe6bd", rotate: "-7deg", x: "7%", y: "23%", z: 3 },
+  { paper: "#ffffff", band: "#ffd6ce", rotate: "6deg", x: "29%", y: "7%", z: 7 },
+  { paper: "#fffbdf", band: "#fff0a6", rotate: "5deg", x: "54%", y: "13%", z: 5 },
+  { paper: "#ffffff", band: "#ffe2c7", rotate: "-6deg", x: "66%", y: "36%", z: 8 },
+  { paper: "#f9fbff", band: "#e8edff", rotate: "-5deg", x: "12%", y: "50%", z: 4 },
+  { paper: "#ffffff", band: "#e8fff8", rotate: "4deg", x: "38%", y: "38%", z: 9 },
+  { paper: "#fff8ff", band: "#f7dcff", rotate: "-3deg", x: "31%", y: "66%", z: 6 },
+  { paper: "#ffffff", band: "#ffd7c5", rotate: "7deg", x: "50%", y: "61%", z: 10 },
+];
 
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [preview, setPreview] = useState({
-    active: false,
-    x: 0,
-    y: 0,
-    title: "",
-    metric: "",
-  });
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    const rows = section.querySelectorAll<HTMLElement>(".service-row");
+    const cards = section.querySelectorAll<HTMLElement>("[data-service-paper]");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const index = Array.from(rows).indexOf(entry.target as HTMLElement);
-            (entry.target as HTMLElement).style.transitionDelay = `${index * 0.08}s`;
-            entry.target.classList.add("is-visible");
+            const index = Array.from(cards).indexOf(entry.target as HTMLElement);
+            (entry.target as HTMLElement).style.transitionDelay = `${index * 0.055}s`;
+            entry.target.classList.add(styles.isVisible);
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.16 }
     );
 
-    rows.forEach((row) => observer.observe(row));
+    cards.forEach((card) => observer.observe(card));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="services" className="section services-section" ref={sectionRef}>
-      <SectionHeader
-        eyebrow="What we do"
-        title="Our services bridge the gap between your business and your customers."
-        text="From social media marketing and Google Ads to content, branding, website design, package design, and SEO, we build the one-step digital system your brand needs to be seen and chosen."
-      />
-
-      <div className="service-list">
-        {services.map((service) => (
-          <article
-            key={service.title}
-            className="service-row"
-            onMouseMove={(event) =>
-              setPreview({
-                active: true,
-                x: event.clientX,
-                y: event.clientY,
-                title: service.title,
-                metric: service.metric,
-              })
-            }
-            onMouseLeave={() => setPreview((value) => ({ ...value, active: false }))}
-          >
-            <span className="service-number">{service.number}</span>
-            <div className="service-main">
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-            </div>
-            <div className="service-side">
-              <strong>{service.metric}</strong>
-              <div className="service-tags">
-                {service.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
-              </div>
-            </div>
-          </article>
-        ))}
+    <section id="services" className={styles.servicesCollage} ref={sectionRef}>
+      <div className={styles.servicesCollageHeader}>
+        <p>Our Services</p>
+        <h2>
+          We Can Offer You
+          <span>The Best</span>
+        </h2>
       </div>
 
-      <div
-        className={`service-cursor-preview ${preview.active ? "is-active" : ""}`}
-        style={{
-          transform: `translate3d(${preview.x + 18}px, ${preview.y + 18}px, 0)`,
-        }}
-        aria-hidden="true"
-      >
-        <span>{preview.title}</span>
-        <strong>{preview.metric}</strong>
+      <div className={styles.servicesCollageStage} aria-label="AR Digitals services">
+        {services.map((service, index) => {
+          const style = cardStyles[index % cardStyles.length];
+
+          return (
+            <article
+              key={service.title}
+              className={styles.servicePaper}
+              data-service-paper
+              style={
+                {
+                  "--paper": style.paper,
+                  "--band": style.band,
+                  "--rotate": style.rotate,
+                  "--x": style.x,
+                  "--y": style.y,
+                  "--z": style.z,
+                } as CSSProperties
+              }
+            >
+              <div>
+                <span>AR Digitals</span>
+                <small>{service.tags[0]}</small>
+              </div>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <strong>{service.tags[1] ?? "Growth"}</strong>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

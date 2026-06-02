@@ -1,5 +1,5 @@
 export const navLinks = [
-  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Price", href: "/pricing" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/#contact" },
@@ -26,35 +26,75 @@ export const clients = [
 export const services = [
   {
     number: "01",
+    icon: "PM",
+    accent: "#2f7cff",
     title: "Social Media Marketing",
     description:
-      "Platform-ready campaigns that make your brand visible, memorable, and worth engaging with across Instagram, Facebook, LinkedIn, and more.",
-    tags: ["Instagram", "Facebook", "Reels"],
-    metric: "+182% actions",
+      "Platform-ready campaigns that build awareness, engagement, and measurable brand demand.",
+    tags: ["Strategy", "Creative", "Growth"],
   },
   {
     number: "02",
+    icon: "GA",
+    accent: "#f5b62f",
     title: "Google Ads Campaigns",
     description:
-      "Search and paid campaigns built to rank higher, reach high-intent customers, and turn interest into qualified enquiries.",
-    tags: ["Search", "Retargeting", "Leads"],
-    metric: "4.8x lift",
+      "High-intent paid campaigns built to capture demand and turn searches into enquiries.",
+    tags: ["Paid Ads", "Performance", "Growth"],
   },
   {
     number: "03",
+    icon: "BR",
+    accent: "#8b5cf6",
     title: "Branding and Graphic Design",
     description:
-      "Advanced designs, sharp brand stories, and creative assets that help people notice you first and remember you longer.",
-    tags: ["Identity", "Creatives", "Packaging"],
-    metric: "40+ stories",
+      "Sharp visual systems, brand stories, and creative assets that make your brand memorable.",
+    tags: ["Branding", "Creative", "Strategy"],
   },
   {
     number: "04",
+    icon: "WS",
+    accent: "#10b981",
     title: "Website and SEO Growth",
     description:
-      "Premium websites, landing pages, and SEO systems that bridge the gap between your business and the customers already looking for you.",
-    tags: ["Websites", "SEO", "Funnels"],
-    metric: "+38% enquiries",
+      "Search-friendly websites and funnels designed for clarity, trust, and conversion.",
+    tags: ["SEO", "Web Design", "Growth"],
+  },
+  {
+    number: "05",
+    icon: "SEO",
+    accent: "#00c985",
+    title: "Search Engine Optimisation",
+    description:
+      "Technical and content direction that helps customers discover you when intent is highest.",
+    tags: ["SEO", "Content", "Strategy"],
+  },
+  {
+    number: "06",
+    icon: "WD",
+    accent: "#22d3ee",
+    title: "Website Design",
+    description:
+      "Premium web experiences that make your offer clear, credible, and easy to act on.",
+    tags: ["Web Design", "Branding", "Creative"],
+  },
+  {
+    number: "07",
+    icon: "OR",
+    accent: "#6366f1",
+    title: "Online Reputation Management",
+    description:
+      "Trust-building profile, review, and reputation systems that make buyers feel confident.",
+    tags: ["Branding", "Strategy", "Growth"],
+  },
+  {
+    number: "08",
+    icon: "IM",
+    accent: "#f97316",
+    title: "Influencer Marketing",
+    description:
+      "Creator-led visibility campaigns that put your offer in front of warmer audiences.",
+    tags: ["Creative", "Growth", "Strategy"],
   },
 ];
 
