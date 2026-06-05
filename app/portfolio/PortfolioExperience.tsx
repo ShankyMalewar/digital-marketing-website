@@ -2,9 +2,18 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState, useRef, useEffect } from "react";
-import type { CSSProperties } from "react";
+import type { CSSProperties, MouseEvent, ReactNode } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion, useScroll, useTransform, useInView } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import styles from "./portfolio.module.css";
 
 /* ─── Asset helpers ──────────────────────────────────────────────────── */
@@ -15,12 +24,14 @@ const logoBase = "Logo-20260529T143626Z-3-001/Logo";
 const motionBase = "Motion Graphics Portfolio-20260529T143656Z-3-001/Motion Graphics Portfolio";
 const packagingBase = "Portfolio of product packaging -20260529T143713Z-3-001/Portfolio of product packaging";
 const moreDataBase = "more data";
+const reelBase = "reels";
 
 const graphic = (f: string) => asset(`${graphicBase}/${f}`);
 const logo = (f: string) => asset(`${logoBase}/${f}`);
 const video = (f: string) => asset(`${motionBase}/${f}`);
 const pack = (f: string) => asset(`${packagingBase}/${f}`);
 const moreData = (f: string) => asset(`${moreDataBase}/${f}`);
+const reelVideo = (f: string) => asset(`${reelBase}/${f}`);
 
 /* ─── Data ───────────────────────────────────────────────────────────── */
 const motionCuts = [
@@ -32,6 +43,14 @@ const motionCuts = [
   video("6.mp4"),
   video("7.mp4"),
   video("WhatsApp Video 2024-03-06 at 10.46.52 PM.mp4"),
+];
+
+const reelCuts = [
+  reelVideo("Green Habit Reel 1 MG (2).mp4"),
+  reelVideo("Mini Samosa.mp4"),
+  reelVideo("Model Reel 2 Gondia.mp4"),
+  reelVideo("VK FEB REEL3 INDIAN DEIVING LICENCE (3).mp4"),
+  reelVideo("Vk Singapore Reel.mp4"),
 ];
 
 const campaignBoards = [
@@ -54,11 +73,11 @@ const identityBoards = [
 ];
 
 const motionReels = [
-  { src: motionCuts[3], label: "Launch Spark", meta: "Showreel 01", desc: "Feed-ready motion cut selected for quick campaign lift" },
-  { src: motionCuts[2], label: "Brand Pulse", meta: "Showreel 02", desc: "High-retention reel edit shaped for stronger product recall" },
-  { src: motionCuts[1], label: "Social Surge", meta: "Showreel 03", desc: "Loop-ready creative built for short-form campaign momentum" },
-  { src: motionCuts[6], label: "Visual Rush", meta: "Showreel 04", desc: "Vertical-first motion sequence tuned for better watch-time" },
-  { src: motionCuts[0], label: "Scroll Hook", meta: "Showreel 05", desc: "Compact social edit designed to catch attention fast" },
+  { src: reelCuts[0], label: "Green Habit", meta: "Reel 01", desc: "Lifestyle-led reel built for clean product recall and brand warmth" },
+  { src: reelCuts[1], label: "Mini Samosa", meta: "Reel 02", desc: "Snackable food reel shaped for instant appetite and fast attention" },
+  { src: reelCuts[2], label: "Model Spotlight", meta: "Reel 03", desc: "People-first reel with a polished local campaign rhythm" },
+  { src: reelCuts[3], label: "Licence Story", meta: "Reel 04", desc: "Service-focused reel designed to make the offer easy to remember" },
+  { src: reelCuts[4], label: "Singapore Trip", meta: "Reel 05", desc: "Travel-led reel edited for aspirational reach and shareability" },
 ];
 
 const instagramReels = [
@@ -179,6 +198,94 @@ const fadeUp = {
 } as const;
 
 /* ─── Stat counter ───────────────────────────────────────────────────── */
+function ParallaxMedia({ children, strength = 16 }: { children: ReactNode; strength?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [strength, -strength]);
+
+  return (
+    <motion.div ref={ref} className={styles.parallaxMedia} style={{ y: shouldReduceMotion ? 0 : y }}>
+      {children}
+    </motion.div>
+  );
+}
+
+function MagneticCard({
+  as = "div",
+  children,
+  className,
+  delay = 0,
+  hoverLift = 10,
+  hoverScale = 1.025,
+  style,
+  viewportAmount = 0.2,
+}: {
+  as?: "article" | "div" | "figure";
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  hoverLift?: number;
+  hoverScale?: number;
+  style?: CSSProperties;
+  viewportAmount?: number;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const spring = { stiffness: 180, damping: 18, mass: 0.55 };
+  const smoothX = useSpring(x, spring);
+  const smoothY = useSpring(y, spring);
+  const smoothRotateX = useSpring(rotateX, spring);
+  const smoothRotateY = useSpring(rotateY, spring);
+  const MotionTag = as === "article" ? motion.article : as === "figure" ? motion.figure : motion.div;
+
+  const handlePointerMove = (event: MouseEvent<HTMLElement>) => {
+    if (shouldReduceMotion) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const relX = event.clientX - rect.left - rect.width / 2;
+    const relY = event.clientY - rect.top - rect.height / 2;
+    x.set(relX * 0.055);
+    y.set(relY * 0.055 - hoverLift);
+    rotateX.set(relY * -0.012);
+    rotateY.set(relX * 0.012);
+  };
+
+  const resetMagnet = () => {
+    x.set(0);
+    y.set(0);
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
+  return (
+    <MotionTag
+      className={`${styles.magneticCard} ${className ?? ""}`}
+      initial={{ opacity: 0, filter: "blur(8px)" }}
+      onMouseLeave={resetMagnet}
+      onMouseMove={handlePointerMove}
+      style={{
+        ...style,
+        x: smoothX,
+        y: smoothY,
+        rotateX: smoothRotateX,
+        rotateY: smoothRotateY,
+      }}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, amount: viewportAmount }}
+      whileHover={shouldReduceMotion ? undefined : { scale: hoverScale }}
+      whileInView={{ opacity: 1, filter: "blur(0px)" }}
+    >
+      {children}
+    </MotionTag>
+  );
+}
+
 function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
@@ -230,21 +337,25 @@ function ProofSlides() {
           }}
         >
           {proofSlides.map((slide, i) => (
-            <motion.article
+            <MagneticCard
+              as="article"
               key={slide.src}
               className={styles.proofSlide}
-              whileHover={{ y: -10, scale: 1.012 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              delay={i * 0.06}
+              hoverLift={9}
+              hoverScale={1.012}
             >
               <div className={styles.proofSlideImage}>
-                <img src={slide.src} alt={slide.title} />
+                <ParallaxMedia strength={14}>
+                  <img src={slide.src} alt={slide.title} />
+                </ParallaxMedia>
               </div>
               <div className={styles.proofSlideCaption}>
                 <span>{slide.kicker}</span>
                 <strong>{slide.title}</strong>
               </div>
               <div className={styles.proofSlideIndex}>0{i + 1}</div>
-            </motion.article>
+            </MagneticCard>
           ))}
         </motion.div>
       </div>
@@ -327,7 +438,7 @@ export default function PortfolioExperience() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <a href="#motion" className={styles.ctaPrimary}>View Showreel</a>
+            <a href="#motion" className={styles.ctaPrimary}>View Reels</a>
             <Link href="/#contact" className={styles.ctaGhost}>Start a Project -&gt;</Link>
           </motion.div>
         </div>
@@ -367,29 +478,29 @@ export default function PortfolioExperience() {
       </section>
 
       {/* ════════════════════════════════════════════════════
-          SECTION 2 — MOTION GRAPHICS
+          SECTION 2 — REELS
       ════════════════════════════════════════════════════ */}
-      <section id="motion" className={styles.sectionMotion} data-section-word="Showreel">
+      <section id="motion" className={styles.sectionMotion} data-section-word="Reels">
         <div className={styles.sectionInner}>
 
           <motion.div {...fadeUp} className={styles.sectionTag}>
-            <span />Showreel
+            <span />Reels
           </motion.div>
 
           <div className={styles.motionHeader}>
             <div>
               <motion.h2 {...fadeUp} className={styles.sectionH2}>
-                Motion that makes<br /><em>scrolls</em> stop.
+                Reels made for<br /><em>watch-time.</em>
               </motion.h2>
               <motion.div {...fadeUp} className={styles.sectionMeta}>
-                <span>{motionReels.length} showreels</span>
-                <span>Loop-ready</span>
-                <span>Feed motion</span>
+                <span>{motionReels.length} featured reels</span>
+                <span>Vertical-first</span>
+                <span>Platform-ready</span>
               </motion.div>
             </div>
             <motion.p {...fadeUp} className={styles.sectionBody}>
-              Campaign motion designed to stop scrolls, increase recall and
-              strengthen every creative brief we touch.
+              Short-form reels engineered for maximum watch-time, engagement
+              and brand recall across every major platform.
             </motion.p>
           </div>
 
@@ -468,18 +579,18 @@ export default function PortfolioExperience() {
             className={styles.logosGrid}
           >
             {brandLogos.map((brand, i) => (
-              <motion.div
+              <MagneticCard
                 key={`${brand.name}-${brand.src}`}
                 className={styles.logoCard}
                 style={{ "--brand-accent": brand.accent } as CSSProperties}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.65, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -7, scale: 1.03 }}
+                delay={i * 0.07}
+                hoverLift={7}
+                hoverScale={1.03}
               >
                 <div className={styles.logoCardMark}>
-                  <img src={brand.src} alt={`${brand.name} logo`} />
+                  <ParallaxMedia strength={10}>
+                    <img src={brand.src} alt={`${brand.name} logo`} />
+                  </ParallaxMedia>
                 </div>
                 <div className={styles.logoCardInfo}>
                   <div>
@@ -488,7 +599,7 @@ export default function PortfolioExperience() {
                   </div>
                 </div>
                 <div className={styles.logoCardAccent} />
-              </motion.div>
+              </MagneticCard>
             ))}
           </motion.div>
         </div>
@@ -522,20 +633,21 @@ export default function PortfolioExperience() {
 
           <div className={styles.packGrid}>
             {packagingBoards.map((src, i) => (
-              <motion.figure
+              <MagneticCard
+                as="figure"
                 key={src}
                 className={`${styles.packFigure} ${i === 0 ? styles.packFigureLarge : ""}`}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -10, scale: 1.02 }}
+                delay={i * 0.1}
+                hoverLift={10}
+                hoverScale={1.02}
               >
-                <img src={src} alt={`Product packaging ${i + 1}`} />
+                <ParallaxMedia strength={i === 0 ? 18 : 12}>
+                  <img src={src} alt={`Product packaging ${i + 1}`} />
+                </ParallaxMedia>
                 <div className={styles.packOverlay}>
                   <span>Packaging 0{i + 1}</span>
                 </div>
-              </motion.figure>
+              </MagneticCard>
             ))}
           </div>
 
@@ -543,56 +655,57 @@ export default function PortfolioExperience() {
       </section>
 
       {/* ════════════════════════════════════════════════════
-          SECTION 5 — INSTAGRAM REELS
+          SECTION 5 — SHOWREEL
       ════════════════════════════════════════════════════ */}
-      <section className={styles.sectionReels} data-section-word="Reels">
+      <section className={styles.sectionReels} data-section-word="Motion">
         <div className={styles.sectionInner}>
 
           <motion.div {...fadeUp} className={styles.sectionTag}>
-            <span />Instagram Reels
+            <span />Motion Graphics
           </motion.div>
 
           <div className={styles.reelsHeader}>
             <div>
               <motion.h2 {...fadeUp} className={styles.sectionH2}>
-                Reels made for<br /><em>watch-time.</em>
+                Motion graphics<br />in <em>motion.</em>
               </motion.h2>
               <motion.div {...fadeUp} className={styles.sectionMeta}>
-                <span>{instagramReels.length} featured reels</span>
-                <span>Vertical-first</span>
-                <span>Platform-ready</span>
+                <span>{instagramReels.length} motion cuts</span>
+                <span>Loop-ready</span>
+                <span>Feed motion</span>
               </motion.div>
             </div>
             <motion.p {...fadeUp} className={styles.sectionBody}>
-              Short-form reels engineered for maximum watch-time, engagement
-              and brand recall across every major platform.
+              Campaign motion designed to stop scrolls, increase recall and
+              strengthen every creative brief we touch.
             </motion.p>
           </div>
 
           <div className={styles.reelsGrid}>
             {instagramReels.map((reel, i) => (
-              <motion.div
+              <MagneticCard
                 key={reel.src}
                 className={styles.reelCard}
-                initial={{ opacity: 0, y: 36 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.7, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -10, scale: 1.025 }}
+                delay={i * 0.09}
+                hoverLift={10}
+                hoverScale={1.025}
+                viewportAmount={0.15}
               >
                 <div className={styles.reelPhone}>
                   <div className={styles.reelPhoneTop}>
                     <div className={styles.reelPhoneCamera} />
                   </div>
                   <div className={styles.reelVideoWrap}>
-                    <video
-                      src={reel.src}
-                      muted
-                      loop
-                      playsInline
-                      autoPlay
-                      preload="metadata"
-                    />
+                    <ParallaxMedia strength={12}>
+                      <video
+                        src={reel.src}
+                        muted
+                        loop
+                        playsInline
+                        autoPlay
+                        preload="metadata"
+                      />
+                    </ParallaxMedia>
                   </div>
                   <div className={styles.reelMeta}>
                     <div className={styles.reelMetaRow}>
@@ -607,7 +720,7 @@ export default function PortfolioExperience() {
                     <span>Share</span>
                   </div>
                 </div>
-              </motion.div>
+              </MagneticCard>
             ))}
           </div>
 
@@ -647,16 +760,18 @@ export default function PortfolioExperience() {
 
           <div className={styles.campaignsList}>
             {campaigns.map((c, i) => (
-              <motion.article
+              <MagneticCard
+                as="article"
                 key={c.src}
                 className={`${styles.campaignCard} ${i === 0 ? styles.campaignCardFeature : ""}`}
-                initial={{ opacity: 0, y: 36 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                delay={i * 0.06}
+                hoverLift={8}
+                hoverScale={1.018}
               >
                 <div className={styles.campaignVisual}>
-                  <img src={c.src} alt={c.title} />
+                  <ParallaxMedia strength={i === 0 ? 18 : 12}>
+                    <img src={c.src} alt={c.title} />
+                  </ParallaxMedia>
                   <div className={styles.campaignVisualBadge}>{c.label}</div>
                 </div>
                 <div className={styles.campaignText}>
@@ -664,7 +779,7 @@ export default function PortfolioExperience() {
                   <h3 className={styles.campaignTitle}>{c.title}</h3>
                   <p className={styles.campaignDesc}>{c.desc}</p>
                 </div>
-              </motion.article>
+              </MagneticCard>
             ))}
           </div>
         </div>

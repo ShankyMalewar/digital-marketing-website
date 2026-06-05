@@ -151,6 +151,85 @@
   font-style: normal;
 }
 
+.magneticCard {
+  isolation: isolate;
+  transform-style: preserve-3d;
+  transition: border-color 0.38s ease, box-shadow 0.38s ease;
+  will-change: transform, opacity, filter;
+}
+
+.magneticCard::before {
+  background:
+    linear-gradient(135deg, rgba(93, 218, 255, 0.82), transparent 28%, transparent 70%, rgba(0, 174, 239, 0.72)),
+    radial-gradient(circle at 18% 12%, rgba(221, 247, 255, 0.72), transparent 32%),
+    radial-gradient(circle at 86% 84%, rgba(0, 174, 239, 0.52), transparent 34%);
+  border-radius: inherit;
+  content: "";
+  inset: -1px;
+  opacity: 0;
+  padding: 1px;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 0.42s ease, filter 0.42s ease;
+  z-index: 1;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.magneticCard::after {
+  background: radial-gradient(circle at 50% 50%, rgba(93, 218, 255, 0.34), transparent 64%);
+  border-radius: inherit;
+  content: "";
+  filter: blur(22px);
+  inset: -14px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 0.42s ease;
+  z-index: -1;
+}
+
+.magneticCard:hover,
+.magneticCard:focus-visible {
+  border-color: rgba(93, 218, 255, 0.42);
+  box-shadow:
+    0 28px 86px rgba(0, 174, 239, 0.2),
+    0 0 0 1px rgba(221, 247, 255, 0.12) inset;
+}
+
+.magneticCard:hover::before,
+.magneticCard:focus-visible::before {
+  filter: drop-shadow(0 0 12px rgba(93, 218, 255, 0.52));
+  opacity: 1;
+}
+
+.magneticCard:hover::after,
+.magneticCard:focus-visible::after {
+  opacity: 1;
+}
+
+.parallaxMedia {
+  display: block;
+  height: calc(100% + 32px);
+  margin-block: -16px;
+  position: relative;
+  width: 100%;
+  will-change: transform;
+}
+
+.parallaxMedia > img,
+.parallaxMedia > video {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
 .sectionBody {
   background:
     linear-gradient(135deg, rgba(8, 26, 43, 0.72), rgba(14, 45, 71, 0.42)),
@@ -604,6 +683,7 @@
 
 .motionHeader .sectionBody {
   max-width: 420px;
+  top: 10px;
 }
 
 .motionLayout {
@@ -1217,6 +1297,10 @@
   margin-bottom: clamp(30px, 4vw, 54px);
 }
 
+.reelsHeader .sectionBody {
+  top: 10px;
+}
+
 .sectionReels .sectionTag,
 .sectionReels .reelsNote a {
   color: var(--yellow);
@@ -1521,6 +1605,23 @@
   max-width: 360px;
 }
 
+.proofSlide.magneticCard:hover,
+.proofSlide.magneticCard:focus-visible,
+.logoCard.magneticCard:hover,
+.logoCard.magneticCard:focus-visible,
+.packFigure.magneticCard:hover,
+.packFigure.magneticCard:focus-visible,
+.reelCard.magneticCard:hover,
+.reelCard.magneticCard:focus-visible,
+.campaignCard.magneticCard:hover,
+.campaignCard.magneticCard:focus-visible {
+  border-color: rgba(93, 218, 255, 0.48);
+  box-shadow:
+    0 30px 90px rgba(0, 174, 239, 0.22),
+    0 0 26px rgba(93, 218, 255, 0.2),
+    0 0 0 1px rgba(221, 247, 255, 0.14) inset;
+}
+
 /* ════════════════════════════════════════════════════════
    CTA CLOSE
 ════════════════════════════════════════════════════════ */
@@ -1616,6 +1717,7 @@
 
   .motionHeader .sectionBody {
     max-width: 520px;
+    top: 0;
   }
 
   .motionLayout {
@@ -1734,6 +1836,10 @@
   .campaignHeader {
     align-items: start;
     grid-template-columns: 1fr;
+  }
+
+  .reelsHeader .sectionBody {
+    top: 0;
   }
 
   .campaignCardFeature {
