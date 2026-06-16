@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import LeadForm from "@/components/LeadForm";
 import MagneticButton from "@/components/MagneticButton";
 
 export default function Contact() {
@@ -42,6 +43,7 @@ export default function Contact() {
             need. We will help you shape the next step with branding, ads,
             content, website, SEO, or a complete growth plan.
           </p>
+          <LeadForm className="contact-lead-form" redirectPath="/?submitted=true#contact" />
           <div className="contact-actions">
             <MagneticButton href="mailto:ardigitalbranding@gmail.com" variant="light">
               ardigitalbranding@gmail.com

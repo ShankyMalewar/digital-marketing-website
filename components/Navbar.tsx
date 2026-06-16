@@ -10,18 +10,15 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeHash, setActiveHash] = useState("");
   const pathname = usePathname();
+  const forceSolid = pathname === "/portfolio" || pathname === "/contact" || pathname.startsWith("/career");
 
   useEffect(() => {
     const onScroll = () => {
       const scrollable =
         document.documentElement.scrollHeight - window.innerHeight;
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Infinity;
       setScrolled(window.scrollY > 28);
       setScrollProgress(scrollable > 0 ? window.scrollY / scrollable : 0);
-      setActiveHash(contactTop < window.innerHeight * 0.5 ? "#contact" : "");
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -36,7 +33,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`site-header ${scrolled || open ? "site-header--solid" : ""} ${
+      className={`site-header ${scrolled || open || forceSolid ? "site-header--solid" : ""} ${
         scrolled ? "site-header--compact" : ""
       }`}
     >
@@ -52,7 +49,8 @@ export default function Navbar() {
                 href={link.href}
                 className={`nav-link ${
                   link.href === pathname ||
-                  (link.href === "/#contact" && pathname === "/" && activeHash === "#contact")
+                  (link.href === "/career" && pathname.startsWith("/career")) ||
+                  (link.href === "/contact" && pathname === "/contact")
                     ? "nav-link--active"
                     : ""
                 }`}
@@ -63,8 +61,9 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <Link href="/#contact" className="desktop-cta anim-4">
-          Get quote
+        <Link href="/contact" className="desktop-cta anim-4">
+          <span>Get quote</span>
+          <span className="desktop-cta__arrow" aria-hidden="true">-&gt;</span>
         </Link>
 
         <button
@@ -89,7 +88,7 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <Link href="/#contact" onClick={() => setOpen(false)} className="mobile-cta">
+            <Link href="/contact" onClick={() => setOpen(false)} className="mobile-cta">
               Get quote
             </Link>
           </li>

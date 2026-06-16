@@ -51,6 +51,7 @@ const reelCuts = [
   reelVideo("Model Reel 2 Gondia.mp4"),
   reelVideo("VK FEB REEL3 INDIAN DEIVING LICENCE (3).mp4"),
   reelVideo("Vk Singapore Reel.mp4"),
+  reelVideo("5.mp4"),
 ];
 
 const campaignBoards = [
@@ -78,6 +79,7 @@ const motionReels = [
   { src: reelCuts[2], label: "Model Spotlight", meta: "Reel 03", desc: "People-first reel with a polished local campaign rhythm" },
   { src: reelCuts[3], label: "Licence Story", meta: "Reel 04", desc: "Service-focused reel designed to make the offer easy to remember" },
   { src: reelCuts[4], label: "Singapore Trip", meta: "Reel 05", desc: "Travel-led reel edited for aspirational reach and shareability" },
+  { src: reelCuts[5], label: "Reel Showcase", meta: "Reel 06", desc: "Short-form reel cut for quick attention and repeat viewing" },
 ];
 
 const instagramReels = [
@@ -439,7 +441,7 @@ export default function PortfolioExperience() {
             transition={{ delay: 0.7, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <a href="#motion" className={styles.ctaPrimary}>View Reels</a>
-            <Link href="/#contact" className={styles.ctaGhost}>Start a Project -&gt;</Link>
+            <Link href="/contact" className={styles.ctaGhost}>Start a Project -&gt;</Link>
           </motion.div>
         </div>
 
@@ -726,7 +728,7 @@ export default function PortfolioExperience() {
 
           <motion.div {...fadeUp} className={styles.reelsNote}>
             <span>+{motionCuts.length - instagramReels.length} more reels in our portfolio</span>
-            <Link href="/#contact">See Full Reel Library -&gt;</Link>
+            <Link href="/contact">See Full Reel Library -&gt;</Link>
           </motion.div>
         </div>
       </section>
@@ -796,7 +798,7 @@ export default function PortfolioExperience() {
               Make the first impression feel{" "}
               <em>premium</em> before you say a word.
             </h2>
-            <Link href="/#contact" className={styles.ctaBig}>Start a Project</Link>
+            <Link href="/contact" className={styles.ctaBig}>Start a Project</Link>
           </motion.div>
         </div>
         <div className={styles.ctaOrb} aria-hidden="true" />
