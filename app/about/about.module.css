@@ -6,7 +6,7 @@
     #fff;
   color: var(--color-ink);
   overflow: hidden;
-  padding-top: 96px;
+  padding-top: 78px;
 }
 
 .hero,
@@ -27,7 +27,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(360px, 0.72fr);
   min-height: auto;
   padding-bottom: clamp(40px, 5vw, 78px);
-  padding-top: clamp(48px, 6vw, 86px);
+  padding-top: clamp(20px, 3vw, 38px);
 }
 
 .eyebrow {
@@ -120,71 +120,28 @@
   color: var(--color-ink);
 }
 
-.heroBoard {
-  background:
-    linear-gradient(145deg, #fff, rgba(234, 241, 255, 0.55)),
-    #fff;
+.heroBanner {
+  aspect-ratio: 1 / 1;
   border: 1px solid rgba(9, 9, 9, 0.08);
-  border-radius: 34px;
+  border-radius: 8px;
   box-shadow: 0 34px 90px rgba(9, 9, 9, 0.12);
-  display: grid;
-  gap: 18px;
   overflow: hidden;
-  padding: clamp(22px, 3vw, 34px);
   position: relative;
 }
 
-.heroBoard::before {
+.heroBanner::before {
   background: linear-gradient(90deg, var(--color-blue), var(--color-yellow));
   content: "";
-  height: 7px;
+  height: 5px;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
+  z-index: 2;
 }
 
-.heroBoard::after {
-  display: none;
-}
-
-.boardStatement {
-  display: grid;
-  gap: 12px;
-  position: relative;
-  z-index: 1;
-}
-
-.boardStatement span {
-  color: var(--color-blue);
-  font-weight: 950;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.boardStatement strong {
-  font-size: clamp(1.8rem, 3vw, 3.2rem);
-  letter-spacing: -0.06em;
-  line-height: 0.95;
-}
-
-.heroSkillList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  list-style: none;
-  position: relative;
-  z-index: 1;
-}
-
-.heroSkillList li {
-  background: var(--color-blue-soft);
-  border: 1px solid rgba(35, 88, 167, 0.14);
-  border-radius: 999px;
-  color: var(--color-blue);
-  font-size: 0.82rem;
-  font-weight: 900;
-  padding: 9px 12px;
+.heroBanner img {
+  object-fit: cover;
 }
 
 .sectionHead {
@@ -523,7 +480,7 @@
 
 @media (max-width: 900px) {
   .page {
-    padding-top: 88px;
+    padding-top: 74px;
   }
 
   .hero {
@@ -557,7 +514,6 @@
     justify-content: center;
   }
 
-  .heroSkillList,
   .snapshotGrid,
   .teamGrid {
     grid-template-columns: 1fr;

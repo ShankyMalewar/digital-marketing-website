@@ -47,9 +47,9 @@ export default async function CareerApplyPage({ searchParams }: CareerApplyPageP
 
           <CareerApplicationForm
             className={styles.form}
-            successClassName={styles.success}
             panelClassName={styles.formPanel}
             highlightClassName={styles.highlight}
+            statusClassName={styles.formStatus}
             initialApplicationType={initialApplicationType}
             initialRole={initialRole}
           />

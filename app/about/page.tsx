@@ -1,15 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import styles from "./about.module.css";
-
-const masteryPoints = [
-  "Brand Development",
-  "Creative Copy",
-  "Custom Illustration",
-  "Identity Design",
-  "Video Editing",
-  "Creative Strategy",
-];
 
 const servicePillars = [
   {
@@ -85,16 +77,14 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className={styles.heroBoard} aria-label="Agency strengths">
-            <div className={styles.boardStatement}>
-              <span>Dikhega Tabhi Toh, Bikega</span>
-              <strong>Marketing that makes the brand easier to notice, trust, and choose.</strong>
-            </div>
-            <ul className={styles.heroSkillList}>
-              {masteryPoints.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
+          <div className={styles.heroBanner}>
+            <Image
+              src="/portfolio/banners/2.jpeg"
+              alt="AR Digitals creative digital marketing agency banner"
+              fill
+              priority
+              sizes="(max-width: 1180px) 100vw, 44vw"
+            />
           </div>
         </section>
 

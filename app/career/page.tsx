@@ -3,6 +3,12 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import styles from "./career.module.css";
 
+type CareerPageProps = {
+  searchParams: Promise<{
+    submitted?: string;
+  }>;
+};
+
 const openings = [
   {
     role: "Jobs",
@@ -24,11 +30,29 @@ export const metadata: Metadata = {
     "Apply for employment and internship opportunities at AR Digitals for video editing, graphic design, and creative digital marketing roles.",
 };
 
-export default function CareerPage() {
+const getSuccessMessage = (submitted?: string) => {
+  if (submitted === "jobs") return "You have successfully submitted the Jobs form.";
+  if (submitted === "internship") return "You have successfully submitted the Internship form.";
+  if (submitted === "error") {
+    return "Your form was received by the website, but email delivery could not be confirmed. Please contact us directly.";
+  }
+  return "";
+};
+
+export default async function CareerPage({ searchParams }: CareerPageProps) {
+  const params = await searchParams;
+  const successMessage = getSuccessMessage(params.submitted);
+
   return (
     <>
       <Navbar />
       <main className={styles.page}>
+        {successMessage ? (
+          <div className={styles.successBanner} role="status">
+            {successMessage}
+          </div>
+        ) : null}
+
         <section className={styles.hero}>
           <div className={styles.heroCopy}>
             <p className={styles.eyebrow}>

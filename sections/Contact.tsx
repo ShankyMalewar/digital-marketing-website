@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import LeadForm from "@/components/LeadForm";
 import MagneticButton from "@/components/MagneticButton";
 
 export default function Contact() {
@@ -33,24 +32,38 @@ export default function Contact() {
   return (
     <section id="contact" className="contact-section" ref={sectionRef}>
       <div className="contact-inner">
-        <div className="reveal-item">
-          <p className="section-eyebrow">Let&apos;s collaborate</p>
-          <h2>Ready to switch your brand to serious digital growth?</h2>
-        </div>
-        <div className="contact-panel reveal-item">
-          <p>
-            Describe your business, goal, target audience, and the service you
-            need. We will help you shape the next step with branding, ads,
-            content, website, SEO, or a complete growth plan.
+        <div className="contact-copy reveal-item">
+          <p className="section-eyebrow">
+            <span>Open for new projects</span>
+            Let&apos;s collaborate
           </p>
-          <LeadForm className="contact-lead-form" redirectPath="/?submitted=true#contact" />
-          <div className="contact-actions">
-            <MagneticButton href="mailto:ardigitalbranding@gmail.com" variant="light">
-              ardigitalbranding@gmail.com
+          <h2>
+            Make your next move <span>impossible to ignore.</span>
+          </h2>
+          <p className="contact-intro">
+            Strategy, campaigns, branding, content, and digital experiences built
+            as one clear growth system.
+          </p>
+          <div className="contact-cta-row reveal-item">
+            <MagneticButton href="/contact" className="contact-page-cta">
+              Start your project
             </MagneticButton>
-            <a href="https://ardigitals.co.in" className="contact-phone">
-              ardigitals.co.in
-            </a>
+          </div>
+        </div>
+
+        <div className="contact-signal reveal-item" aria-label="AR Digitals capabilities">
+          <div className="contact-signal__top">
+            <span>AR / 2026</span>
+            <strong>Built for visibility</strong>
+          </div>
+          <div className="contact-signal__rows">
+            <div><span>01</span><strong>Brand identity</strong><i /></div>
+            <div><span>02</span><strong>Social campaigns</strong><i /></div>
+            <div><span>03</span><strong>Web and growth</strong><i /></div>
+          </div>
+          <div className="contact-signal__foot">
+            <span>Nagpur</span>
+            <span>Working across India</span>
           </div>
         </div>
       </div>

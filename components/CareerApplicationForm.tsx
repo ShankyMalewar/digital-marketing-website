@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useSyncExternalStore } from "react";
+import { FormEvent, useState } from "react";
 
 type CareerApplicationFormProps = {
   className: string;
-  successClassName: string;
   panelClassName: string;
   highlightClassName: string;
+  statusClassName: string;
   initialApplicationType?: ApplicationType;
   initialRole?: string;
 };
@@ -14,7 +14,6 @@ type CareerApplicationFormProps = {
 type ApplicationType = "employment" | "internship";
 
 const companyEmail = "ardigitalbranding@gmail.com";
-const fallbackOrigin = "https://www.ardigitals.co.in";
 const roleOptions = ["Video Editor", "Graphic Designer"];
 
 const indianStates = [
@@ -56,36 +55,46 @@ const indianStates = [
   "Puducherry",
 ];
 
-const subscribeToUrl = (callback: () => void) => {
-  window.addEventListener("popstate", callback);
-
-  return () => window.removeEventListener("popstate", callback);
-};
-
-const getSubmittedSnapshot = () =>
-  new URLSearchParams(window.location.search).get("submitted") === "true";
-
 export default function CareerApplicationForm({
   className,
-  successClassName,
   panelClassName,
   highlightClassName,
+  statusClassName,
   initialApplicationType = "employment",
   initialRole = "",
 }: CareerApplicationFormProps) {
+  const [status, setStatus] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const applicationType = initialApplicationType;
-  const nextUrlRef = useRef<HTMLInputElement>(null);
-  const submitted = useSyncExternalStore(subscribeToUrl, getSubmittedSnapshot, () => false);
-
-  useEffect(() => {
-    if (!nextUrlRef.current) return;
-    const redirectPath = `/career/apply?submitted=true&type=${applicationType}#application`;
-    nextUrlRef.current.value = `${window.location.origin}${redirectPath}`;
-  }, [applicationType]);
-
   const isEmployment = applicationType === "employment";
   const safeInitialRole = roleOptions.includes(initialRole) ? initialRole : "";
-  const fallbackRedirect = `${fallbackOrigin}/career/apply?submitted=true&type=${applicationType}#application`;
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus("");
+    setSubmitting(true);
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${companyEmail}`, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(event.currentTarget),
+      });
+
+      const result = (await response.json()) as { success?: boolean | string };
+      if (!response.ok || result.success === false || result.success === "false") {
+        throw new Error("FormSubmit rejected the application.");
+      }
+
+      const submittedType = isEmployment ? "jobs" : "internship";
+      window.location.assign(`/career?submitted=${submittedType}#current-openings`);
+    } catch {
+      setStatus(
+        "We could not email your application. Please try again or email your resume directly to ardigitalbranding@gmail.com."
+      );
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div className={panelClassName} id="application">
@@ -102,17 +111,17 @@ export default function CareerApplicationForm({
       )}
 
       <form
-        action={`https://formsubmit.co/${companyEmail}`}
+        action={`https://formsubmit.co/ajax/${companyEmail}`}
         className={className}
         encType="multipart/form-data"
         method="POST"
+        onSubmit={handleSubmit}
       >
-        {submitted ? (
-          <div className={successClassName} role="status">
-            Application submitted. Our team will contact you soon.
+        {status ? (
+          <div className={statusClassName} role="alert" aria-live="polite">
+            {status}
           </div>
         ) : null}
-
         <input
           type="hidden"
           name="_subject"
@@ -124,7 +133,6 @@ export default function CareerApplicationForm({
         />
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_captcha" value="false" />
-        <input ref={nextUrlRef} type="hidden" name="_next" defaultValue={fallbackRedirect} />
         <input type="hidden" name="application_type" value={isEmployment ? "Employment" : "Internship"} />
 
         <label>
@@ -295,8 +303,12 @@ export default function CareerApplicationForm({
           <textarea name="message" minLength={20} rows={5} required />
         </label>
 
-        <button type="submit">
-          {isEmployment ? "Submit employment application ->" : "Submit internship application ->"}
+        <button type="submit" disabled={submitting}>
+          {submitting
+            ? "Sending application..."
+            : isEmployment
+              ? "Submit employment application ->"
+              : "Submit internship application ->"}
         </button>
       </form>
     </div>

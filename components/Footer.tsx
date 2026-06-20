@@ -5,10 +5,10 @@ import SocialIcon from "@/components/SocialIcon";
 
 const socials = [
   { label: "Facebook", icon: "facebook", href: "https://www.facebook.com" },
-  { label: "Instagram", icon: "instagram", href: "https://www.instagram.com" },
+  { label: "Instagram", icon: "instagram", href: "https://www.instagram.com/ardigitals.in/" },
   { label: "YouTube", icon: "youtube", href: "https://www.youtube.com" },
   { label: "WhatsApp", icon: "whatsapp", href: "https://wa.me/918149367027" },
-  { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com" },
+  { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/company/ardigitals-in/" },
   { label: "X", icon: "x", href: "https://x.com" },
 ];
 
@@ -40,6 +40,7 @@ export default function Footer() {
           <div className="site-footer__contact">
             <span className="site-footer__label">Connect</span>
             <a href="tel:+918149367027">+91 81493 67027</a>
+            <a href="tel:+917218004929">+91 72180 04929</a>
             <a href="mailto:ardigitalbranding@gmail.com">ardigitalbranding@gmail.com</a>
           </div>
 

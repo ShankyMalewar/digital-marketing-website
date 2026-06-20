@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import LeadForm from "@/components/LeadForm";
 import Navbar from "@/components/Navbar";
 import SocialIcon from "@/components/SocialIcon";
@@ -33,10 +34,10 @@ const contactItems = [
 
 const socials = [
   { label: "Facebook", icon: "facebook", href: "https://www.facebook.com" },
-  { label: "Instagram", icon: "instagram", href: "https://www.instagram.com" },
+  { label: "Instagram", icon: "instagram", href: "https://www.instagram.com/ardigitals.in/" },
   { label: "YouTube", icon: "youtube", href: "https://www.youtube.com" },
   { label: "WhatsApp", icon: "whatsapp", href: "https://wa.me/918149367027" },
-  { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com" },
+  { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/company/ardigitals-in/" },
   { label: "X", icon: "x", href: "https://x.com" },
 ];
 
@@ -53,14 +54,25 @@ export default function ContactPage() {
       <main className={styles.page}>
         <section className={styles.shell} id="contact">
           <div className={styles.hero}>
-            <p className={styles.eyebrow}>
-              <span /> Contact AR Digitals
-            </p>
-            <h1>Let&apos;s make your brand easier to find.</h1>
-            <p>
-              Reach us for digital marketing, branding, content, websites, SEO,
-              campaigns, and creative production.
-            </p>
+            <div className={styles.heroCopy}>
+              <p className={styles.eyebrow}>
+                <span /> Contact AR Digitals
+              </p>
+              <h1>Let&apos;s make your brand easier to find.</h1>
+              <p>
+                Reach us for digital marketing, branding, content, websites, SEO,
+                campaigns, and creative production.
+              </p>
+            </div>
+            <div className={styles.heroMedia}>
+              <Image
+                src="/portfolio/vc/vc ar_page-0001.jpg"
+                alt="AR Digitals visiting card with phone numbers, email, website, and social links"
+                fill
+                priority
+                sizes="(max-width: 900px) 100vw, 42vw"
+              />
+            </div>
           </div>
 
           <div className={styles.layout}>
