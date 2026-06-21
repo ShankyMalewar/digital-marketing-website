@@ -31,15 +31,36 @@ const servicePillars = [
 ];
 
 const teamMembers = [
-  { name: "Aarav Mehta", role: "Creative Director", experience: "8+ years", tone: "blue" },
-  { name: "Riya Sharma", role: "Brand Strategist", experience: "6+ years", tone: "yellow" },
-  { name: "Kabir Joshi", role: "Performance Marketer", experience: "7+ years", tone: "green" },
-  { name: "Naina Kapoor", role: "Social Media Lead", experience: "5+ years", tone: "paper" },
-  { name: "Vivaan Rao", role: "Video Producer", experience: "9+ years", tone: "blue" },
-  { name: "Isha Verma", role: "Graphic Designer", experience: "5+ years", tone: "yellow" },
-  { name: "Rehan Khan", role: "SEO Specialist", experience: "6+ years", tone: "green" },
-  { name: "Meera Iyer", role: "Copywriter", experience: "4+ years", tone: "paper" },
-  { name: "Arjun Sen", role: "Client Success Lead", experience: "7+ years", tone: "blue" },
+  {
+    name: "Nehal Sir",
+    role: "Creative Director",
+    image: "/portfolio/employee/Nehal.jpg.jpeg",
+  },
+  {
+    name: "Romesh Waghmare",
+    role: "Operational Manager / Brand Strategist",
+    image: "/portfolio/employee/Romesh.jpg.jpeg",
+  },
+  {
+    name: "Rahul Lokhande",
+    role: "Social Media Manager",
+    image: "/portfolio/employee/Rahul.jpg.jpeg",
+  },
+  {
+    name: "Fardeen Faizee",
+    role: "Graphic Designer",
+    image: "/portfolio/employee/Fardeen.jpg.jpeg",
+  },
+  {
+    name: "Abhilash Raikwar",
+    role: "SEO Specialist",
+    image: "/portfolio/employee/Abhishek.jpg.jpeg",
+  },
+  {
+    name: "Payal",
+    role: "Role to be defined",
+    image: "/portfolio/employee/Payal.jpg.jpeg",
+  },
 ];
 
 export const metadata = {
@@ -119,21 +140,24 @@ export default function AboutPage() {
             <p className={styles.eyebrow}>
               <span /> Know the team
             </p>
-            <h2>The people shaping every campaign, creative, and customer touchpoint.</h2>
+            <h2>Meet the core team shaping every campaign, creative, and customer touchpoint.</h2>
           </div>
 
           <div className={styles.teamGrid}>
             {teamMembers.map((member, index) => (
-              <article key={member.name} className={`${styles.teamCard} ${styles[`teamCard${member.tone[0].toUpperCase()}${member.tone.slice(1)}`]}`}>
-                <div className={styles.teamPhoto} aria-label={`${member.name} photo placeholder`}>
-                  <span>{member.name.split(" ").map((part) => part[0]).join("")}</span>
-                  <i aria-hidden="true" />
+              <article key={member.name} className={styles.teamCard}>
+                <div className={styles.teamPhoto}>
+                  <Image
+                    src={member.image}
+                    alt={`${member.name}, ${member.role}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1180px) 50vw, 33vw"
+                  />
                 </div>
                 <div className={styles.teamBody}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   <h3>{member.name}</h3>
                   <p>{member.role}</p>
-                  <strong>{member.experience} experience</strong>
                 </div>
               </article>
             ))}

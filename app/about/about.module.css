@@ -125,8 +125,11 @@
   border: 1px solid rgba(9, 9, 9, 0.08);
   border-radius: 8px;
   box-shadow: 0 34px 90px rgba(9, 9, 9, 0.12);
+  justify-self: center;
+  max-width: min(100%, 560px);
   overflow: hidden;
   position: relative;
+  width: 92%;
 }
 
 .heroBanner::before {
@@ -272,15 +275,17 @@
 
 .teamGrid {
   display: grid;
-  gap: clamp(18px, 2.2vw, 30px);
+  gap: clamp(18px, 2vw, 28px);
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .teamCard {
-  background: #fff;
-  border: 1px solid rgba(9, 9, 9, 0.08);
-  border-radius: 26px;
-  box-shadow: 0 20px 54px rgba(9, 9, 9, 0.07);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 42%),
+    #08090c;
+  border: 1px solid rgba(255, 217, 23, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 28px 72px rgba(9, 9, 9, 0.12);
   isolation: isolate;
   overflow: hidden;
   position: relative;
@@ -288,68 +293,55 @@
 }
 
 .teamCard::before {
-  background:
-    linear-gradient(135deg, rgba(0, 174, 239, 0.8), transparent 30%, transparent 70%, rgba(93, 218, 255, 0.62)),
-    radial-gradient(circle at 18% 10%, rgba(221, 247, 255, 0.72), transparent 30%);
-  border-radius: inherit;
+  background: linear-gradient(90deg, var(--color-blue), rgba(255, 217, 23, 0.95));
   content: "";
-  inset: -1px;
-  opacity: 0;
-  padding: 1px;
-  pointer-events: none;
+  height: 4px;
+  left: 0;
   position: absolute;
-  transition: opacity 0.34s ease, filter 0.34s ease;
-  z-index: 2;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
+  right: 0;
+  top: 0;
+  z-index: 3;
 }
 
 .teamCard::after {
-  background: radial-gradient(circle at 50% 18%, rgba(0, 174, 239, 0.26), transparent 62%);
-  border-radius: inherit;
+  background:
+    radial-gradient(circle at 78% 16%, rgba(255, 217, 23, 0.16), transparent 35%),
+    radial-gradient(circle at 18% 12%, rgba(0, 174, 239, 0), transparent 36%);
   content: "";
-  filter: blur(20px);
-  inset: -18px;
-  opacity: 0;
+  inset: 0;
+  opacity: 0.85;
   pointer-events: none;
   position: absolute;
-  transition: opacity 0.34s ease;
-  z-index: -1;
+  transition: opacity 0.28s ease, background 0.28s ease;
+  z-index: 0;
 }
 
 .teamCard:hover {
   box-shadow:
-    0 30px 78px rgba(0, 174, 239, 0.18),
-    0 0 26px rgba(93, 218, 255, 0.18);
+    0 36px 90px rgba(9, 9, 9, 0.22),
+    0 0 0 1px rgba(0, 174, 239, 0.42),
+    0 0 32px rgba(0, 174, 239, 0.18);
   transform: translateY(-7px);
 }
 
 .teamCard:hover::before {
-  filter: drop-shadow(0 0 12px rgba(93, 218, 255, 0.52));
-  opacity: 1;
+  background: linear-gradient(90deg, rgba(0, 174, 239, 0.95), rgba(255, 217, 23, 0.9));
 }
 
 .teamCard:hover::after {
+  background:
+    radial-gradient(circle at 78% 16%, rgba(255, 217, 23, 0.14), transparent 35%),
+    radial-gradient(circle at 18% 12%, rgba(0, 174, 239, 0.18), transparent 38%);
   opacity: 1;
 }
 
 .teamPhoto {
-  align-items: center;
-  aspect-ratio: 4 / 3;
-  background:
-    radial-gradient(circle at 70% 24%, rgba(255, 255, 255, 0.82), transparent 18%),
-    linear-gradient(135deg, var(--color-blue), var(--color-blue-dark));
-  display: flex;
-  justify-content: center;
+  aspect-ratio: 1 / 1;
+  background: #071a2b;
   overflow: hidden;
   position: relative;
   transition: filter 0.34s ease, transform 0.34s var(--ease-out);
+  z-index: 1;
 }
 
 .teamCard:hover .teamPhoto {
@@ -358,86 +350,48 @@
 }
 
 .teamPhoto::before {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 46% 46% 0 0;
-  bottom: -18%;
+  background: linear-gradient(180deg, transparent 42%, rgba(8, 9, 12, 0.82));
+  bottom: 0;
   content: "";
-  height: 58%;
+  inset-inline: 0;
   position: absolute;
-  width: 48%;
+  top: 0;
+  z-index: 2;
 }
 
-.teamPhoto span {
-  align-items: center;
-  background: #fff;
-  border: 8px solid rgba(255, 255, 255, 0.32);
-  border-radius: 999px;
-  color: var(--color-blue);
-  display: flex;
-  font-size: clamp(2.2rem, 4vw, 3.8rem);
-  font-weight: 950;
-  height: clamp(104px, 12vw, 150px);
-  justify-content: center;
-  position: relative;
-  width: clamp(104px, 12vw, 150px);
-  z-index: 1;
-}
-
-.teamPhoto i {
-  background: var(--color-yellow);
-  border-radius: 999px;
-  height: 24px;
-  position: absolute;
-  right: 22px;
-  top: 22px;
-  width: 24px;
-}
-
-.teamCardYellow .teamPhoto {
-  background: linear-gradient(135deg, var(--color-yellow), #f6b900);
-}
-
-.teamCardGreen .teamPhoto {
-  background: linear-gradient(135deg, var(--color-green), #047857);
-}
-
-.teamCardPaper .teamPhoto {
-  background: linear-gradient(135deg, #f4f4ef, #dfe8f7);
+.teamPhoto img {
+  object-fit: cover;
+  object-position: center top;
 }
 
 .teamBody {
-  padding: 22px;
+  min-height: 164px;
+  padding: 24px;
+  position: relative;
+  z-index: 2;
 }
 
 .teamBody > span {
-  color: var(--color-blue);
+  color: var(--color-yellow);
   font-size: 0.78rem;
   font-weight: 950;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.2em;
 }
 
 .teamCard h3 {
+  color: #fff;
   font-size: clamp(1.35rem, 1.8vw, 1.85rem);
   font-weight: 950;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
   line-height: 1;
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 .teamCard p {
-  color: var(--color-muted);
-  font-weight: 800;
-  margin-top: 8px;
-}
-
-.teamCard strong {
-  background: var(--color-blue-soft);
-  border-radius: 999px;
-  color: var(--color-blue);
-  display: inline-flex;
-  font-size: 0.86rem;
-  margin-top: 18px;
-  padding: 8px 12px;
+  color: rgba(255, 255, 255, 0.72);
+  font-weight: 850;
+  line-height: 1.45;
+  margin-top: 10px;
 }
 
 .cta {
@@ -471,6 +425,11 @@
   .hero,
   .sectionHeadSplit {
     grid-template-columns: 1fr;
+  }
+
+  .heroBanner {
+    max-width: 620px;
+    width: 100%;
   }
 
   .snapshotGrid {
